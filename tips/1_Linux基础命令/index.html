@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/ymmc_logo.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ymmc_logo.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/ymmc_logo.svg">
+  <link rel="mask-icon" href="/images/ymmc_logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"39.106.182.159","root":"/","images":"/images","scheme":"Muse","version":"8.7.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":80,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"manual"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":true,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="关于命令行（以zsh为例）从左至右介绍username@hostname代表了用户@所使用的机器名 目录Linux的一些特殊目录 &#x2F; 为根目录 ~为用户目录 .为当前目录 ..为上一级目录 根目录没有上一级目录 废话  如何表示一个目录如 用户目录下的new目录 ~&#x2F;new如 根目录下的old目录 &#x2F;old如 new的套娃表示 ~&#x2F;new&#x2F;..&#x2F;new&#x2F;.&#x2F; #用户目录的new目录的上一级目录的n">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Linux基础命令">
+<meta property="og:url" content="http://39.106.182.159/tips/1_Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="YMMC">
+<meta property="og:description" content="关于命令行（以zsh为例）从左至右介绍username@hostname代表了用户@所使用的机器名 目录Linux的一些特殊目录 &#x2F; 为根目录 ~为用户目录 .为当前目录 ..为上一级目录 根目录没有上一级目录 废话  如何表示一个目录如 用户目录下的new目录 ~&#x2F;new如 根目录下的old目录 &#x2F;old如 new的套娃表示 ~&#x2F;new&#x2F;..&#x2F;new&#x2F;.&#x2F; #用户目录的new目录的上一级目录的n">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-08-24T13:44:59.219Z">
+<meta property="article:modified_time" content="2021-08-23T11:23:04.000Z">
+<meta property="article:author" content="YMMC">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://39.106.182.159/tips/1_Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"http://39.106.182.159/tips/1_Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/index.html","path":"tips/1_Linux基础命令/index.html","title":"Linux基础命令"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Linux基础命令 | YMMC
+</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">YMMC</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Yuming Minecraft Club</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tips"><a href="/tips/" rel="section"><i class="fa fa-tag fa-fw"></i>前置知识</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%91%BD%E4%BB%A4%E8%A1%8C%EF%BC%88%E4%BB%A5zsh%E4%B8%BA%E4%BE%8B%EF%BC%89%E4%BB%8E%E5%B7%A6%E8%87%B3%E5%8F%B3%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">关于命令行（以zsh为例）从左至右介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#username-hostname"><span class="nav-number">1.1.</span> <span class="nav-text">username@hostname</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">1.2.</span> <span class="nav-text">目录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux%E7%9A%84%E4%B8%80%E4%BA%9B%E7%89%B9%E6%AE%8A%E7%9B%AE%E5%BD%95"><span class="nav-number">1.2.1.</span> <span class="nav-text">Linux的一些特殊目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%A1%A8%E7%A4%BA%E4%B8%80%E4%B8%AA%E7%9B%AE%E5%BD%95"><span class="nav-number">1.2.2.</span> <span class="nav-text">如何表示一个目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%A1%A8%E7%A4%BA%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6"><span class="nav-number">1.2.3.</span> <span class="nav-text">如何表示一个文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E5%8C%BA"><span class="nav-number">1.3.</span> <span class="nav-text">输入区</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4%EF%BC%88%E5%BB%BA%E8%AE%AE%E5%90%8C%E6%97%B6%E6%89%93%E5%BC%80%E7%BB%88%E7%AB%AF%E5%B0%9D%E8%AF%95%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">Linux的一些基本命令（建议同时打开终端尝试）</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="YMMC"
+      src="/images/ymmc_logo_white-letters.svg">
+  <p class="site-author-name" itemprop="name">YMMC</p>
+  <div class="site-description" itemprop="description">Yuming Minecraft Club</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fas fa-user-friends fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.dlymgz.cn/" title="http:&#x2F;&#x2F;www.dlymgz.cn" rel="noopener" target="_blank">大连育明高级中学官方网站</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://minecraft.net/" title="http:&#x2F;&#x2F;minecraft.net" rel="noopener" target="_blank">Minecraft官网</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://myxrcrs.cn/" title="http:&#x2F;&#x2F;myxrcrs.cn" rel="noopener" target="_blank">myxr_crs的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://39.106.182.159:8000/" title="http:&#x2F;&#x2F;39.106.182.159:8000">miaojior的博客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://khlfyy.top/" title="http:&#x2F;&#x2F;khlfyy.top" rel="noopener" target="_blank">KHLFYY的博客</a>
+        </li>
+    </ul>
+  </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+  
+  
+
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">Linux基础命令
+</h1>
+
+<div class="post-meta-container">
+  <ul class="breadcrumb">
+            <li><a href="/tips/">TIPS</a></li>
+          <li>1_LINUX基础命令</li>
+        
+  </ul>
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <h2 id="关于命令行（以zsh为例）从左至右介绍"><a href="#关于命令行（以zsh为例）从左至右介绍" class="headerlink" title="关于命令行（以zsh为例）从左至右介绍"></a>关于命令行（以zsh为例）从左至右介绍</h2><h3 id="username-hostname"><a href="#username-hostname" class="headerlink" title="username@hostname"></a>username@hostname</h3><p>代表了用户@所使用的机器名</p>
+<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><h4 id="Linux的一些特殊目录"><a href="#Linux的一些特殊目录" class="headerlink" title="Linux的一些特殊目录"></a>Linux的一些特殊目录</h4><ul>
+<li>/ 为根目录</li>
+<li>~为用户目录</li>
+<li>.为当前目录</li>
+<li>..为上一级目录 <del>根目录没有上一级目录 废话</del></li>
+</ul>
+<h4 id="如何表示一个目录"><a href="#如何表示一个目录" class="headerlink" title="如何表示一个目录"></a>如何表示一个目录</h4><p>如 用户目录下的new目录 ~/new<br>如 根目录下的old目录 /old<br>如 new的套娃表示 ~/new/../new/./ #用户目录的new目录的上一级目录的new目录的当前目录<br>当前目录可省略不写 比如当前目录就是 ~/ 那么new 就等价于 ~/new<br><del>你可以学习完cd命令后尝试本部分内容</del><br><del>注意特殊目录在此处的使用</del></p>
+<h4 id="如何表示一个文件"><a href="#如何表示一个文件" class="headerlink" title="如何表示一个文件"></a><del>如何表示一个文件</del></h4><p>如 new.txt #表示当前目录下的new.txt文件<br>同理 你也可以用目录加文件名的方式<br>如 ~/new/new.txt</p>
+<h3 id="输入区"><a href="#输入区" class="headerlink" title="输入区"></a>输入区</h3><p>在此处输入命令 按回车执行<br>终端上会返回执行结果<br>初学者建议逐条执行命令 不要大段复制<br>注：本网站上以#为注释符号 即同一行#后的部分为对命令的解释 不需要执行（简单来说英文部分才是真正的命令）<br>命令运行结束时 回自动重新打开下一个命令行 一些不会自己结束的命令 按Ctrl+C强制停止</p>
+<h2 id="Linux的一些基本命令（建议同时打开终端尝试）"><a href="#Linux的一些基本命令（建议同时打开终端尝试）" class="headerlink" title="Linux的一些基本命令（建议同时打开终端尝试）"></a>Linux的一些基本命令（建议同时打开终端尝试）</h2><ul>
+<li><em>file</em> 可以用任何表示文件的方式表示</li>
+<li><em>directory</em> 可以用任何表示目录的方式表示</li>
+</ul>
+<p>list</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ls  #列出当前目录下的文件及目录
+#ls 命令不会列出以.开头的隐藏文件 如.和.. 如果需要全部显示 请使用
+ls -a</code></pre>
+
+<p>make directory</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">mkdir documents  #新建以&quot;documents&quot;为名称的文件夹</code></pre>
+
+<p>change directory</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">cd directory #进入一个目录 即打开一个文件夹
+#一些特殊的cd
+cd documents #进入当前目录下的documents目录
+cd .. #返回上一级目录
+#当然你也可以在 documents目录原地传送
+cd ..&#x2F;.&#x2F;documents</code></pre>
+
+<p>copy</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">cp source_file directory #将源文件文件复制到 目标目录下
+cp -r source_directory directory #源目录整个复制到目标目录下
+# 当源为目录时 需要添加-r参数对整个目录递归操作
+cp source_file file_backup #在当前目录下创建源文件的副本</code></pre>
+
+<p>move</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">mv source_file directory #将源文件移动到目标目录下
+mv source_directory directory #将源目录移动到目标目录下
+#你是不是在想为什么没有重命名 的确 Linux没有 rename这种指令 因为你只需要 mv
+mv file1 file2 #将file1重命名为 file2</code></pre>
+
+<p>remove</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">rm file #删除文件
+rm -rf direcroty #删除目录和目录下所有文件
+#请注意：在linux命令行下操作，没有回收站这东西给你后悔用</code></pre>
+
+<p>友情链接：（本部分旨在遵守各程序分发的版权许可并对程序提供者进行署名）<br><a target="_blank" rel="noopener" href="https://ohmyz.sh/">zsh</a> license: <a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh/blob/master/LICENCE">https://github.com/zsh-users/zsh/blob/master/LICENCE</a></p>
+
+      </div>
+      
+      
+      
+    </div>
+  <ul class="breadcrumb">
+            <li><a href="/tips/">TIPS</a></li>
+          <li>1_LINUX基础命令</li>
+        
+  </ul>
+
+    
+    
+
+
+    <div class="comments" id="valine-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YMMC</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">12k</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/components/prism-core.min.js" integrity="sha256-dz05jjFU9qYuMvQQlE6iWDtNAnEsmu6uMb1vWhKdkEM=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha256-sttoa+EIAvFFfeeIkmPn8ypyOOb6no2sZ2NbxtBXgqU=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/plugins/line-numbers/prism-line-numbers.min.js" integrity="sha256-K837BwIyiXo5k/9fCYgqUyA14bN4/Ve9P2SIT0KmZD0=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+<script class="next-config" data-name="valine" type="application/json">{"enable":true,"appId":"IqCxEk2rC2wOlSTrTaaLoLqN-MdYXbMMI","appKey":"rdBTwC8Dr43I20igaDc4BWiT","serverURLs":"https://iqcxek2r.api.lncldglobal.com","placeholder":"本站采用匿名评论，无需注册账号，只需输入昵称和符合语法的邮箱和网址，不需要真实。但请注意，网络不是法外之地，您的IP将被记录。","avatar":"YMMC","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":true,"comment_count":false,"recordIP":true,"enableQQ":false,"requiredFields":[],"el":"#valine-comments","path":"/tips/1_Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.valine.el)
+    .then(() => NexT.utils.getScript(
+      'https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js',
+      { condition: window.Valine }
+    ))
+    .then(() => {
+      new Valine(CONFIG.valine);
+    });
+});
+</script>
+
+</body>
+</html>
