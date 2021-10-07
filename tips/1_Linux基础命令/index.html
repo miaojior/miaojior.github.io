@@ -21,15 +21,15 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"39.106.182.159","root":"/","images":"/images","scheme":"Muse","version":"8.7.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":80,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"manual"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":true,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="关于命令行（以zsh为例）从左至右介绍username@hostname代表了用户@所使用的机器名 目录Linux的一些特殊目录 &#x2F; 为根目录 ~为用户目录 .为当前目录 ..为上一级目录 根目录没有上一级目录 废话  如何表示一个目录如 用户目录下的new目录 ~&#x2F;new如 根目录下的old目录 &#x2F;old如 new的套娃表示 ~&#x2F;new&#x2F;..&#x2F;new&#x2F;.&#x2F; #用户目录的new目录的上一级目录的n">
+<meta name="description" content="文件和目录Linux的一些特殊目录 &#x2F; 为根目录 ~为用户目录 .为当前目录 ..为上一级目录 根目录当然没有上一级目录  现在有一个这样的目录层级关系 &#x2F; ├── ~ │    └── test1 │         ├── a.txt │         ├── b.txt │         └── c.txt │ └── test2      └── d.txt  如何表示其中一">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Linux基础命令">
 <meta property="og:url" content="http://39.106.182.159/tips/1_Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/index.html">
 <meta property="og:site_name" content="YMMC">
-<meta property="og:description" content="关于命令行（以zsh为例）从左至右介绍username@hostname代表了用户@所使用的机器名 目录Linux的一些特殊目录 &#x2F; 为根目录 ~为用户目录 .为当前目录 ..为上一级目录 根目录没有上一级目录 废话  如何表示一个目录如 用户目录下的new目录 ~&#x2F;new如 根目录下的old目录 &#x2F;old如 new的套娃表示 ~&#x2F;new&#x2F;..&#x2F;new&#x2F;.&#x2F; #用户目录的new目录的上一级目录的n">
+<meta property="og:description" content="文件和目录Linux的一些特殊目录 &#x2F; 为根目录 ~为用户目录 .为当前目录 ..为上一级目录 根目录当然没有上一级目录  现在有一个这样的目录层级关系 &#x2F; ├── ~ │    └── test1 │         ├── a.txt │         ├── b.txt │         └── c.txt │ └── test2      └── d.txt  如何表示其中一">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-08-29T10:38:32.840Z">
-<meta property="article:modified_time" content="2021-08-26T15:46:20.000Z">
+<meta property="article:published_time" content="2021-09-21T12:00:06.490Z">
+<meta property="article:modified_time" content="2021-09-21T12:00:06.490Z">
 <meta property="article:author" content="YMMC">
 <meta name="twitter:card" content="summary">
 
@@ -122,7 +122,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%91%BD%E4%BB%A4%E8%A1%8C%EF%BC%88%E4%BB%A5zsh%E4%B8%BA%E4%BE%8B%EF%BC%89%E4%BB%8E%E5%B7%A6%E8%87%B3%E5%8F%B3%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">关于命令行（以zsh为例）从左至右介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#username-hostname"><span class="nav-number">1.1.</span> <span class="nav-text">username@hostname</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">1.2.</span> <span class="nav-text">目录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux%E7%9A%84%E4%B8%80%E4%BA%9B%E7%89%B9%E6%AE%8A%E7%9B%AE%E5%BD%95"><span class="nav-number">1.2.1.</span> <span class="nav-text">Linux的一些特殊目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%A1%A8%E7%A4%BA%E4%B8%80%E4%B8%AA%E7%9B%AE%E5%BD%95"><span class="nav-number">1.2.2.</span> <span class="nav-text">如何表示一个目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%A1%A8%E7%A4%BA%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6"><span class="nav-number">1.2.3.</span> <span class="nav-text">如何表示一个文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E5%8C%BA"><span class="nav-number">1.3.</span> <span class="nav-text">输入区</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4%EF%BC%88%E5%BB%BA%E8%AE%AE%E5%90%8C%E6%97%B6%E6%89%93%E5%BC%80%E7%BB%88%E7%AB%AF%E5%B0%9D%E8%AF%95%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">Linux的一些基本命令（建议同时打开终端尝试）</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95"><span class="nav-number">1.</span> <span class="nav-text">文件和目录</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Linux%E7%9A%84%E4%B8%80%E4%BA%9B%E7%89%B9%E6%AE%8A%E7%9B%AE%E5%BD%95"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">Linux的一些特殊目录</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%A1%A8%E7%A4%BA%E5%85%B6%E4%B8%AD%E4%B8%80%E4%B8%AA%E7%9B%AE%E5%BD%95"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">如何表示其中一个目录</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%A1%A8%E7%A4%BA%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">如何表示一个文件</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="nav-number">2.</span> <span class="nav-text">如何使用命令行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4%EF%BC%88%E5%BB%BA%E8%AE%AE%E5%90%8C%E6%97%B6%E6%89%93%E5%BC%80%E7%BB%88%E7%AB%AF%E5%B0%9D%E8%AF%95%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">Linux的一些基本命令（建议同时打开终端尝试）</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -138,13 +138,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -224,16 +224,29 @@
       
       
       <div class="post-body">
-          <h2 id="关于命令行（以zsh为例）从左至右介绍"><a href="#关于命令行（以zsh为例）从左至右介绍" class="headerlink" title="关于命令行（以zsh为例）从左至右介绍"></a>关于命令行（以zsh为例）从左至右介绍</h2><h3 id="username-hostname"><a href="#username-hostname" class="headerlink" title="username@hostname"></a>username@hostname</h3><p>代表了用户@所使用的机器名</p>
-<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><h4 id="Linux的一些特殊目录"><a href="#Linux的一些特殊目录" class="headerlink" title="Linux的一些特殊目录"></a>Linux的一些特殊目录</h4><ul>
+          <h2 id="文件和目录"><a href="#文件和目录" class="headerlink" title="文件和目录"></a>文件和目录</h2><h5 id="Linux的一些特殊目录"><a href="#Linux的一些特殊目录" class="headerlink" title="Linux的一些特殊目录"></a>Linux的一些特殊目录</h5><ul>
 <li>/ 为根目录</li>
 <li>~为用户目录</li>
 <li>.为当前目录</li>
-<li>..为上一级目录 <del>根目录没有上一级目录 废话</del></li>
+<li>..为上一级目录 <del>根目录当然没有上一级目录</del></li>
 </ul>
-<h4 id="如何表示一个目录"><a href="#如何表示一个目录" class="headerlink" title="如何表示一个目录"></a>如何表示一个目录</h4><p>如 用户目录下的new目录 ~/new<br>如 根目录下的old目录 /old<br>如 new的套娃表示 ~/new/../new/./ #用户目录的new目录的上一级目录的new目录的当前目录<br>当前目录可省略不写 比如当前目录就是 ~/ 那么new 就等价于 ~/new<br><del>你可以学习完cd命令后尝试本部分内容</del><br><del>注意特殊目录在此处的使用</del></p>
-<h4 id="如何表示一个文件"><a href="#如何表示一个文件" class="headerlink" title="如何表示一个文件"></a><del>如何表示一个文件</del></h4><p>如 new.txt #表示当前目录下的new.txt文件<br>同理 你也可以用目录加文件名的方式<br>如 ~/new/new.txt</p>
-<h3 id="输入区"><a href="#输入区" class="headerlink" title="输入区"></a>输入区</h3><p>在此处输入命令 按回车执行<br>终端上会返回执行结果<br>初学者建议逐条执行命令 不要大段复制<br>注：本网站上以#为注释符号 即同一行#后的部分为对命令的解释 不需要执行（简单来说英文部分才是真正的命令）<br>命令运行结束时 回自动重新打开下一个命令行 一些不会自己结束的命令 按Ctrl+C强制停止</p>
+<p>现在有一个这样的目录层级关系</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">&#x2F;
+├── ~
+│    └── test1
+│         ├── a.txt
+│         ├── b.txt
+│         └── c.txt
+│
+└── test2
+     └── d.txt</code></pre>
+
+<h5 id="如何表示其中一个目录"><a href="#如何表示其中一个目录" class="headerlink" title="如何表示其中一个目录"></a>如何表示其中一个目录</h5><p>可以在任何位置通过<code>~/test1/</code>和<code>/test2/</code>的方式表示test1和test2这两个目录，因为在任何位置<code>/</code>都是根目录<code>~</code>都是用户目录<br>当前目录位于<code>~</code>时只需使用<code>test1/</code>即可表示目录test1<br>此时，也可以使用 <code>../test2/</code>表示目录test2</p>
+<h5 id="如何表示一个文件"><a href="#如何表示一个文件" class="headerlink" title="如何表示一个文件"></a>如何表示一个文件</h5><p>可以在任何位置通过<code>~/test1/a.txt</code>和<code>/test2/d.txt/</code>表示a.txt和d.txt这两个文件<br>如果当前目录位于test1时，只需使用<code>a.txt</code>表示文件a.txt<br>此时也可以使用<code>../../test2/d.txt</code>表示d.txt</p>
+<h2 id="如何使用命令行"><a href="#如何使用命令行" class="headerlink" title="如何使用命令行"></a>如何使用命令行</h2><p>在命令行中输入命令后，按enter键运行，一般的，命令行会返回运行信息。<br>对于初学者来说，请一行一行的输入（复制，粘贴）命令<br>一般的，一个命令运行结束后，会自动打开命令行下一行。一些有延续性的命令，需要使用Ctrl-c来结束。</p>
+<ul>
+<li>注：shell脚本中一般使用#为单行注释符号，一行中#后的部分为注释内容，不是实际要执行的代码。简而言之，只需要复制#前的纯英文内容，即为命令。</li>
+</ul>
 <h2 id="Linux的一些基本命令（建议同时打开终端尝试）"><a href="#Linux的一些基本命令（建议同时打开终端尝试）" class="headerlink" title="Linux的一些基本命令（建议同时打开终端尝试）"></a>Linux的一些基本命令（建议同时打开终端尝试）</h2><ul>
 <li><em>file</em> 可以用任何表示文件的方式表示</li>
 <li><em>directory</em> 可以用任何表示目录的方式表示</li>
@@ -310,7 +323,7 @@ rm -rf direcroty #删除目录和目录下所有文件
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">12k</span>
+    <span title="站点总字数">18k</span>
   </span>
 </div>
 <div class="busuanzi-count">
